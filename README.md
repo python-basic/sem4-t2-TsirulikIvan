@@ -28,3 +28,22 @@ def handle_voice(message):
         dispatcher.add_user(message.chat.id, bot, ctrl, message, test_one)
         print(dispatcher.users_list())
 ```
+## Декоратор 3
+Считабющий кол-во вызовов опредленной функции
+```python
+def call_counter(func):
+    if not hasattr(call_counter, 'count'):
+        call_counter.count = {}
+    call_counter.count[func.__name__] = 0
+    print(f'func name {func}')
+
+    def wrapper(*args, **kwargs):
+        call_counter.count[func.__name__] += 1
+        if call_counter.count[func.__name__] == 2:
+            call_counter.count[func.__name__] = 0
+            raise IndexError
+        print(f'Call counter = {call_counter.count[func.__name__]}')
+        res = func(*args, **kwargs)
+        return res
+    return wrapper
+```
