@@ -15,6 +15,7 @@
 ```
 ## Декоратор 2
 Декоратор из библиотеки telebot позволяющий осуществлять фильтрацию сообщений приходящих боту
+```python
 @bot.message_handler(content_types='voice')
 def handle_voice(message):
     if message.chat.id in dispatcher.users_list():
@@ -26,3 +27,4 @@ def handle_voice(message):
     else:
         dispatcher.add_user(message.chat.id, bot, ctrl, message, test_one)
         print(dispatcher.users_list())
+```
